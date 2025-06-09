@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Halca Imobiliária</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topo">
+    <div class="container-topo">
+      <h1 class="logo">Halca Imobiliária</h1>
+      <nav class="menu">
+        <a href="index.html" class="ativo">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        <a href="admin.html">Anuciar imóveis</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="filtros">
+      <h2>Filtrar Imóveis</h2>
+
+      <label for="tipo">Tipo</label>
+      <select id="tipo" name="tipo">
+        <option value="">Todos</option>
+        <option value="apartamento">Apartamento</option>
+        <option value="casa">Casa</option>
+        <option value="terreno">Terreno</option>
+      </select>
+
+      <label for="finalidade">Finalidade</label>
+      <select id="finalidade" name="finalidade">
+        <option value="">Todos</option>
+        <option value="venda">Venda</option>
+        <option value="aluguel">Aluguel</option>
+      </select>
+
+      <label for="preco-min">Preço Mínimo (R$)</label>
+      <input type="number" id="preco-min" name="preco-min" min="0" placeholder="0" />
+
+      <label for="preco-max">Preço Máximo (R$)</label>
+      <input type="number" id="preco-max" name="preco-max" min="0" placeholder="1000000" />
+
+      <button class="btn-filtro" id="btn-filtrar">Aplicar Filtros</button>
+    </aside>
+
+    <section class="imoveis" id="imoveis">
+      <article class="imovel" data-tipo="apartamento" data-finalidade="venda" data-preco="350000">
+        <img src="https://www.quintoandar.com.br/guias/wp-content/uploads/2022/08/decoracao-apartamento-pequeno-01-scaled.jpg" alt="Apartamento Compacto" />
+        <div class="info-imovel">
+          <h3>Apartamento Compacto</h3>
+          <p>Praticidade no centro da cidade.</p>
+          <p class="preco">R$ 350.000</p>
+          <a href="detalhes.html" class="btn-detalhes">Detalhes</a>
+        </div>
+      </article>
+
+      <article class="imovel" data-tipo="apartamento" data-finalidade="venda" data-preco="480000">
+        <img src="https://www.estilofontana.com.br/blog/wp-content/uploads/2019/09/sacada-gourmet-1170x658.jpg" alt="Apartamento com Sacada" />
+        <div class="info-imovel">
+          <h3>Apartamento com Sacada</h3>
+          <p>Espaçoso com sacada e vista para o parque.</p>
+          <p class="preco">R$ 480.000</p>
+          <a href="detalhes.html" class="btn-detalhes">Detalhes</a>
+        </div>
+      </article>
+
+      <article class="imovel" data-tipo="apartamento" data-finalidade="venda" data-preco="600000">
+        <img src="https://s2.glbimg.com/igVdRQKMa55hDIroaycGhblTM9U=/e.glbimg.com/og/ed/f/original/2017/05/11/sofa-marcenaria-sala-living-mesa-de-jantar-cadeiras-lustra.jpg" alt="Apartamento Familiar" />
+        <div class="info-imovel">
+          <h3>Apartamento Familiar</h3>
+          <p>3 quartos, próximo a escolas.</p>
+          <p class="preco">R$ 600.000</p>
+          <a href="detalhes.html" class="btn-detalhes">Detalhes</a>
+        </div>
+      </article>
+
+      <article class="imovel" data-tipo="casa" data-finalidade="venda" data-preco="750000">
+        <img src="https://admin.archshop.com.br/uploads/001_261511aea8.jpg" alt="Casa Moderna" />
+        <div class="info-imovel">
+          <h3>Casa Moderna</h3>
+          <p>3 quartos, piscina, churrasqueira, garagem para 2 carros.</p>
+          <p class="preco">R$ 750.000</p>
+          <a href="detalhes.html" class="btn-detalhes">Detalhes</a>
+        </div>
+      </article>
+
+      <article class="imovel" data-tipo="apartamento" data-finalidade="aluguel" data-preco="1200000">
+        <img src="https://s2.glbimg.com/4q8g20CA2E_GmddMiMjVgOmjiIg=/smart/e.glbimg.com/og/ed/f/original/2015/08/18/apartamento-santa-catarina-espaco-traco-arquitetura-02.jpg
+        
+        
+        
+        
+        " alt="Apartamento Luxuoso" />
+        <div class="info-imovel">
+          <h3>Apartamento Luxuoso</h3>
+          <p>Vista incrível e área de lazer completa.</p>
+          <p class="preco">R$ 1.200.000</p>
+          <a href="detalhes.html" class="btn-detalhes">Detalhes</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>&copy; 2025 | Halca Imobiliária | Desenvolvido por Universal Software.</p>
+  </footer>
+
+  <script>
+    const btnFiltrar = document.getElementById('btn-filtrar');
+    btnFiltrar.addEventListener('click', () => {
+      const tipo = document.getElementById('tipo').value;
+      const finalidade = document.getElementById('finalidade').value;
+      const precoMin = parseFloat(document.getElementById('preco-min').value) || 0;
+      const precoMax = parseFloat(document.getElementById('preco-max').value) || Infinity;
+
+      const imoveis = document.querySelectorAll('.imovel');
+      imoveis.forEach(imovel => {
+        const imovelTipo = imovel.getAttribute('data-tipo');
+        const imovelFinalidade = imovel.getAttribute('data-finalidade');
+        const imovelPreco = parseFloat(imovel.getAttribute('data-preco'));
+
+        const tipoOk = !tipo || imovelTipo === tipo;
+        const finalidadeOk = !finalidade || imovelFinalidade === finalidade;
+        const precoOk = imovelPreco >= precoMin && imovelPreco <= precoMax;
+
+        imovel.style.display = tipoOk && finalidadeOk && precoOk ? 'block' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
+
